@@ -21,7 +21,7 @@ export default function Home() {
 
     useEffect(() => {
         console.log("Home")
-        fetch("http://localhost:3002/api/get/users").then((data) => {
+        fetch("https://goldstone-h6jg.onrender.com/api/get/users").then((data) => {
             return data.json()
         }
         ).then((data) => {
