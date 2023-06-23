@@ -17,7 +17,8 @@ app.use(express.json());
 
 
 app.use("/api/get",getRoutes)
-// app.use("/api/csv",csvRoutes);
+app.use("/api/csv",csvRoutes);
+app.use("/api/patch",patchRoutes);
 
 app.get("/", (req, res) => {
   res.send("hello world");
