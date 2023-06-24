@@ -6,7 +6,7 @@ const PORT = process.env.Port || 3002;
 const ConnectToDatabase = require("./Config/mongoDbConfig");
 const getRoutes = require("./Routes/getRoutes");
 const csvRoutes = require("./Routes/csvRoutes");
-const patchRoutes = require("./Routes/patchRoutes");
+const putRoutes = require("./Routes/putRoutes");
 const User = require("./Model/userSchema");
 const { get } = require("mongoose");
 const axios = require("axios");
@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use("/api/get",getRoutes)
 app.use("/api/csv",csvRoutes);
-app.use("/api/patch",patchRoutes);
+app.use("/api/update",putRoutes);
 
 app.get("/", (req, res) => {
   res.send("hello world");

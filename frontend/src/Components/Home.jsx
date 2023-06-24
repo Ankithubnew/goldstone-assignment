@@ -9,25 +9,21 @@ export default function Home() {
     const handleChange = (e) => {
         setUser({...user,[e.target.name]:e.target.value})
     }
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setData(data.map((elem)=>{  return elem.id === user.id ? user : elem }  ))
-        // axios.patch("http://localhost:3002/api/patch/users/"+user.id,user).then((data)=>{
-        //     console.log(data)
-        // })
-
+        const res = await axios.put("https://goldstone-h6jg.onrender.com/api/update/users"+user.id,user);
+        console.log(res);
         onClose()
+    }
+    const getData = async () => {
+        const res = await axios.get("https://goldstone-h6jg.onrender.com/api/get/users");
+        console.log(res.data);
+        setData(res.data)
     }
 
 
     useEffect(() => {
-        console.log("Home")
-        fetch("https://goldstone-h6jg.onrender.com/api/get/users").then((data) => {
-            return data.json()
-        }
-        ).then((data) => {
-            console.log(data)
-            setData(data)
-        })
+        getData()
     }, [])
   return (
     <Box>
