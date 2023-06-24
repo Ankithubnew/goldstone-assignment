@@ -11,7 +11,7 @@ export default function Home() {
     }
     const handleSubmit = async () => {
         setData(data.map((elem)=>{  return elem.id === user.id ? user : elem }  ))
-        const res = await axios.put("https://goldstone-h6jg.onrender.com/api/update/users"+user.id,user);
+        const res = await axios.put("https://goldstone-h6jg.onrender.com/api/update/users/"+user.id,user);
         console.log(res);
         onClose()
     }
