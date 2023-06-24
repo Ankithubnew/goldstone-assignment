@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Center, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spinner, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -26,10 +26,20 @@ export default function Home() {
         getData()
     }, [])
   return (
-    <Box>
-        {console.log(user) }
-        <TableContainer maxW={'90%'} m={'auto'} mt={'4'} >
-        <Table  variant="striped" colorScheme='twitter' >
+    <>
+    {data.length === 0 && <Center mt={'4'}>
+    <Spinner
+      thickness='4px'
+      speed='0.65s'
+      emptyColor='gray.200'
+      color='blue.500'
+      size='xl'
+    />
+    </Center>}
+    <Box backgroundColor={'GrayText'} >
+        
+        {data.length>0?<TableContainer maxW={'90%'} m={'auto'}  backgroundColor={'Background'}>
+        <Table  variant="striped" colorScheme='teal' >
             <Thead>
                 <Tr>
                     <Th>Id</Th>
@@ -41,7 +51,6 @@ export default function Home() {
                 </Tr>
             </Thead>
             <Tbody>
-                {data?.length === 0 && <Tr><Th>Loading...</Th></Tr>}
                 {data?.map((elem,ind) => {
                     return (
                         <Tr key={elem.id}>
@@ -102,8 +111,8 @@ export default function Home() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </TableContainer>
+    </TableContainer>:null}
     </Box>
-    
+    </>
   )
 }
